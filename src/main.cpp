@@ -1,25 +1,17 @@
-#include <iostream>
-#include <bitset>
 
 #include "board.h"
+#include "bitboard_utils.h"
+
+using namespace bitboard_utils;
 
 int main() {
     Board board;
-    U64 whitePawns;
-    U64 blackPawns;
-    U64 allPawns;
+    Bitboard white_pawns;
 
-    whitePawns = board.getWhitePawns();
-    blackPawns = board.getBlackPawns();
-    allPawns = whitePawns | blackPawns;
+    white_pawns = board.getWhitePawns();
+    white_pawns = set_bit(white_pawns, a8);
+    white_pawns = pop_bit(white_pawns, a3);
+    print_bitboard(white_pawns);
 
-    std::bitset<64> x(allPawns);
-
-    // print pawn locations
-    for (int i = 0; i < 64; i++) {
-        std::cout << x[i];
-        if (i % 8 == 7) {
-            std::cout << '\n';
-        }
-    }
+    return 0;
 }

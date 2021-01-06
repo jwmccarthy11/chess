@@ -5,12 +5,7 @@
 
 #include <cstdint>
 
-typedef uint64_t U64;
-
-enum Color {
-    White,
-    Black
-};
+typedef uint64_t Bitboard;
 
 enum Piece {
     Pawn,
@@ -19,6 +14,11 @@ enum Piece {
     Rook,
     Queen,
     King
+};
+
+enum Color {
+    White,
+    Black
 };
 
 enum Occupancy {
