@@ -25,8 +25,7 @@ enum Occupancy {
 };
 
 enum File {
-    A, B, C, D, E, F, G, H,
-    AB, BC, CD, DE, EF, FG, GH
+    A, B, C, D, E, F, G, H
 };
 
 // Little endian rank-file (LERF) mapping
