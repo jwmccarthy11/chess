@@ -5,7 +5,8 @@
 
 namespace mask {
 
-    const std::array<Bitboard, 8> file_mask = {
+    // single file bitboards
+    const std::array<Bitboard, 8> file = {
             0x0101010101010101,  // A
             0x0202020202020202,  // B
             0x0404040404040404,  // C
@@ -16,7 +17,8 @@ namespace mask {
             0x8080808080808080   // H
     };
 
-    const std::array<Bitboard, 8> rank_mask = {
+    // single rank bitboards
+    const std::array<Bitboard, 8> rank = {
             0x00000000000000FF,  // 1
             0x000000000000FF00,  // 2
             0x0000000000FF0000,  // 3
@@ -27,7 +29,9 @@ namespace mask {
             0xFF00000000000000   // 8
     };
 
-    const std::array<Bitboard, 7> file_pair_mask = {
+    // file pair bitboards
+    // indexed by first file letter
+    const std::array<Bitboard, 7> pair = {
             0x0303030303030303,  // A & B
             0x0606060606060606,  // B & C
             0x0C0C0C0C0C0C0C0C,  // C & D
