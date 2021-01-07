@@ -24,4 +24,4 @@ namespace bitboard_utils {
 
 }
 
-#endif //CHESS_ENGINE_BITBOARD_UTILS_H
+#endif  // BITBOARD_UTILS_H

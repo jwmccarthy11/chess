@@ -3,9 +3,10 @@
 #include "attack_table.h"
 
 using namespace bitboard_utils;
-using namespace attack_table;
 
-AttackTable::AttackTable() {}
+AttackTable::AttackTable() {
+    initPawnAttacks();
+}
 
 AttackTable::~AttackTable() {}
 
@@ -17,20 +18,20 @@ Bitboard AttackTable::maskPawnAttacks(Square square, Color color) {
 
     if (color) {
         // black pawn attacks
-        attacks |= (piece >> P_ATK_LEFT_OFFSET  & ~file_mask[A])  // southeast
-                |  (piece >> P_ATK_RIGHT_OFFSET & ~file_mask[H]); // southwest
+        attacks |= (piece >> P_ATK_LEFT_OFFSET  & ~mask::file_mask[A])   // southeast
+                |  (piece >> P_ATK_RIGHT_OFFSET & ~mask::file_mask[H]);  // southwest
     } else {
         // white pawn attacks
-        attacks |= (piece << P_ATK_LEFT_OFFSET  & ~file_mask[H])  // northwest
-                |  (piece << P_ATK_RIGHT_OFFSET & ~file_mask[A]); // northeast
+        attacks |= (piece << P_ATK_LEFT_OFFSET  & ~mask::file_mask[H])   // northwest
+                |  (piece << P_ATK_RIGHT_OFFSET & ~mask::file_mask[A]);  // northeast
     }
 
     return attacks;
 }
 
 void AttackTable::initPawnAttacks() {
-    for (unsigned sq = A1; sq != EndSquare; sq++) {
-        pawn_attacks[sq][White] = maskPawnAttacks( (Square) sq, White );
-        pawn_attacks[sq][Black] = maskPawnAttacks( (Square) sq, Black );
+    for (unsigned square = A1; square != EndSquare; square++) {
+        pawn_attacks[square][White] = maskPawnAttacks( (Square) square, White );
+        pawn_attacks[square][Black] = maskPawnAttacks( (Square) square, Black );
     }
 }

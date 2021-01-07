@@ -4,14 +4,12 @@
 #include "attack_table.h"
 
 using namespace bitboard_utils;
-using namespace attack_table;
+using namespace mask;
 
 int main() {
     AttackTable atk_tbl;
 
-    atk_tbl.initPawnAttacks();
-
-    Bitboard a1_atk = atk_tbl.getWhitePawnAttacks(A1);
+    Bitboard a1_atk = atk_tbl.getBlackPawnAttacks(B8);
 
     printBitboard(a1_atk);
 
