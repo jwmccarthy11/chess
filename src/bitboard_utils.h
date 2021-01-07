@@ -8,19 +8,19 @@
 
 namespace bitboard_utils {
 
-    constexpr Bitboard get_bit(Bitboard bitboard, Square square) {
+    constexpr Bitboard getBit(Bitboard bitboard, Square square) {
         return bitboard & 1ULL << square;
     }
 
-    constexpr Bitboard set_bit(Bitboard bitboard, Square square) {
+    constexpr Bitboard setBit(Bitboard bitboard, Square square) {
         return bitboard | 1ULL << square;
     }
 
-    constexpr Bitboard pop_bit(Bitboard bitboard, Square square) {
-        return get_bit(bitboard, square) ? bitboard ^ 1ULL << square : bitboard;
+    constexpr Bitboard popBit(Bitboard bitboard, Square square) {
+        return getBit(bitboard, square) ? bitboard ^ 1ULL << square : bitboard;
     }
 
-    void print_bitboard(Bitboard);
+    void printBitboard(Bitboard);
 
 }
 

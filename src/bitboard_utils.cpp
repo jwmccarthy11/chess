@@ -4,16 +4,14 @@
 #include <bitset>
 #include "bitboard_utils.h"
 
-#define BOARD_DIM 8
-
-void bitboard_utils::print_bitboard(Bitboard bitboard) {
+void bitboard_utils::printBitboard(Bitboard bitboard) {
     std::bitset<64> bits(bitboard);
 
     // print board in console with file/rank labels
-    for (int i = BOARD_DIM-1; i >= 0; i--) {
+    for (int i = 7; i >= 0; i--) {
         std::cout << i+1 << "  ";
-        for (int j = 0; j < BOARD_DIM; j++) {
-            bits[i*BOARD_DIM + j] ? std::cout << "@ " : std::cout << ". ";
+        for (int j = 0; j < 8; j++) {
+            std::cout << (bits[i*8 + j] ? "@ " : ". ");
         }
         std::cout << '\n';
     }

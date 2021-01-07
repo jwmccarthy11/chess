@@ -1,17 +1,19 @@
 
 #include "board.h"
 #include "bitboard_utils.h"
+#include "attack_table.h"
 
 using namespace bitboard_utils;
+using namespace attack_table;
 
 int main() {
-    Board board;
-    Bitboard white_pawns;
+    AttackTable atk_tbl;
 
-    white_pawns = board.getWhitePawns();
-    white_pawns = set_bit(white_pawns, a8);
-    white_pawns = pop_bit(white_pawns, a3);
-    print_bitboard(white_pawns);
+    atk_tbl.initPawnAttacks();
+
+    Bitboard a1_atk = atk_tbl.getWhitePawnAttacks(A1);
+
+    printBitboard(a1_atk);
 
     return 0;
 }
