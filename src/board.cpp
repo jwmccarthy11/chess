@@ -2,11 +2,10 @@
 
 #include "board.h"
 
-Board::Board() {
-    piece_bb[Pawn]  = 0x0000002000039000;
-    color_bb[White] = 0x0000002000039000;
+inline Bitboard Board::getPieceBitboard(Piece piece, Color color) {
+    return piece_bb[piece] & color_bb[color];
 }
 
-Board::~Board() {
-
+inline Bitboard Board::getColorBitboard(Color color) {
+    return piece_bb[Any] & color_bb[color];
 }

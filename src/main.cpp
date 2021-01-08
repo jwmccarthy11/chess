@@ -1,13 +1,17 @@
+// main.cpp
 
+#include <iostream>
 #include "board.h"
-#include "bitboard_utils.h"
-#include "attack_table.h"
+#include "bitboard.h"
+#include "attack.h"
 
-using namespace bitboard_utils;
-using namespace mask;
+using namespace bitboard;
+using namespace attack;
 
 int main() {
-    AttackTable atk_tbl;
+    init();
+
+    printBitboard(knight_attacks[G6]);
 
     return 0;
 }
