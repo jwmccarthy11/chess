@@ -11,7 +11,7 @@ using namespace attack;
 int main() {
     init();
 
-    printBitboard(knight_attacks[G6]);
+    printBitboard(pawn_attacks[White][E4]);
 
     return 0;
 }

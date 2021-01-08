@@ -3,7 +3,9 @@
 #ifndef BITBOARD_H
 #define BITBOARD_H
 
+#include <cstdlib>
 #include <iostream>
+#include <algorithm>
 #include "types.h"
 
 namespace bitboard {
@@ -44,6 +46,21 @@ namespace bitboard {
 
     constexpr Bitboard popBit(Bitboard bitboard, Square square) {
         return getBit(bitboard, square) ? bitboard ^ 1ULL << square : bitboard;
+    }
+
+    constexpr int validFile(Square from, Square to) {
+        int dist = (to % 8 - from % 8);
+        dist = dist < 0 ? -dist : dist;  // clang doesn't allow abs() in constexpr
+        return dist < 3;
+    }
+
+    constexpr bool validSquare(Square square) {
+        return square >= A1 && square < NumSquare;
+    }
+
+    constexpr Bitboard setShift(Square square, int shift) {
+        auto target = (Square) (square + shift);
+        return validSquare(square) && validFile(square, target) ? setBit(0ULL, target) : 0ULL;
     }
 
     void printBitboard(Bitboard);
