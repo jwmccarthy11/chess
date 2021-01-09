@@ -6,12 +6,11 @@
 #include "attack.h"
 
 using namespace bitboard;
-using namespace attack;
 
 int main() {
-    init();
+    attack::init();
 
-    printBitboard(pawn_attacks[White][E4]);
+    printBitboard(attack::knight_attacks[E4]);
 
     return 0;
 }

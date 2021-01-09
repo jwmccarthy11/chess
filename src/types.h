@@ -34,10 +34,4 @@ inline Square& operator++(Square& s) {
     return s = Square( int(s) + 1 );
 }
 
-// Square post-increment
-inline Square operator++(Square& s, int) {
-    Square result = s; ++s;
-    return result;
-}
-
 #endif  //TYPES_H
