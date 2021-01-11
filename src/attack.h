@@ -24,7 +24,7 @@ namespace attack {
     // set bit at valid attack location
     constexpr Bitboard attackShift(Square square, int shift) {
         auto target = (Square) (square + shift);
-        return validSquare(target) && validFile(square, target) ? squareBit(target) : 0ULL;
+        return validSquare(target) && validFile(square, target) ? squareToBitboard(target) : 0ULL;
     }
 
     extern Bitboard pawn_attacks[NumColor][NumSquare];

@@ -22,6 +22,7 @@ void attack::init() {
     }
 }
 
+// generate pawn attacks for a given square, color
 Bitboard attack::maskPawnAttacks(Square square, Color color) {
     Bitboard attacks = 0ULL;
 
@@ -32,12 +33,15 @@ Bitboard attack::maskPawnAttacks(Square square, Color color) {
     return attacks;
 }
 
+// generate bishop pseudo-attacks for a given square
 Bitboard attack::maskBishopAttacks(Square square) {
     int rank = square >> 3;
     int file = square &  7;
     int shift_ne = 8 * (rank - file);
     int shift_nw = 8 * (rank + file - 7);
 
-    return ((signShift(diagNE, shift_ne) | signShift(diagNW, shift_nw))
-            ^ squareBit(square)) & ~edge;
+    return ((signedShift(diagNE, shift_ne)
+             | signedShift(diagNW, shift_nw))  // combine shifted diagonals
+            ^ squareToBitboard(square))               // remove occupied square
+            & ~edge;                                  // remove edge bits
 }

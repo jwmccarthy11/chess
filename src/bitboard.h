@@ -57,12 +57,12 @@ namespace bitboard {
     }
 
     // shift bitboard according to sign of shift
-    constexpr Bitboard signShift(Bitboard bitboard, int shift) {
+    constexpr Bitboard signedShift(Bitboard bitboard, int shift) {
         return shift > 0 ? bitboard << shift : bitboard >> -shift;
     }
 
     // get bitboard with given square = 1
-    constexpr Bitboard squareBit(Square square) {
+    constexpr Bitboard squareToBitboard(Square square) {
         return 1ULL << square;
     }
 
