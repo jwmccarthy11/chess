@@ -19,8 +19,6 @@ void attack::init() {
         for (int shift : king_shift) {
             king_attacks[square] |= attackShift(square, shift);
         }
-
-
     }
 }
 
@@ -40,8 +38,6 @@ Bitboard attack::maskBishopAttacks(Square square) {
     int shift_ne = 8 * (rank - file);
     int shift_nw = 8 * (rank + file - 7);
 
-    return signShift(diagNE, shift_ne)
-        |  signShift(diagNW, shift_nw)
-        ^  squareBit(square)
-        &  ~edge;
+    return ((signShift(diagNE, shift_ne) | signShift(diagNW, shift_nw))
+            ^ squareBit(square)) & ~edge;
 }
