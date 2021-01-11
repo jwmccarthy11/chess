@@ -42,6 +42,6 @@ Bitboard attack::maskBishopAttacks(Square square) {
 
     return ((signedShift(diagNE, shift_ne)
             | signedShift(diagNW, shift_nw))  // combine shifted diagonals
-            ^ squareToBitboard(square))               // remove occupied square
-            & ~edge;                                  // remove edge bits
+            ^ squareToBitboard(square))       // remove occupied square
+            & ~edge;                          // remove edge bits
 }
