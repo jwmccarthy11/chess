@@ -10,7 +10,10 @@ using namespace bitboard;
 int main() {
     attack::init();
 
-    printBitboard(attack::knight_attacks[E4]);
+    for (Square s = A1; s < NumSquare; ++s) {
+        std::cout << s << '\n';
+        printBitboard(attack::maskBishopAttacks(s));
+    }
 
     return 0;
 }

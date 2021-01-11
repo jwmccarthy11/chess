@@ -8,13 +8,11 @@
 typedef uint64_t Bitboard;
 
 enum Piece {
-    Pawn, Knight, Bishop, Rook, Queen, King, Any,
-    NumPiece = 8
+    Pawn, Knight, Bishop, Rook, Queen, King, Any, NumPiece
 };
 
 enum Color {
-    White, Black,
-    NumColor = 2
+    White, Black, NumColor
 };
 
 enum Square {
@@ -33,5 +31,23 @@ enum Square {
 inline Square& operator++(Square& s) {
     return s = Square( int(s) + 1 );
 }
+
+enum Direction {
+    // cardinal directions
+    N = 8,
+    S = -8,
+    E = 1,
+    W = -1,
+
+    // composite directions
+    NE = N+E, NW = N+W,
+    SE = S+E, SW = S+W,
+
+    // tri-composite directions
+    NNE = N+N+E, NNW = N+N+W,
+    SSE = S+S+E, SSW = S+S+W,
+    ENE = E+N+E, WNW = W+N+W,
+    ESE = E+S+E, WSW = W+S+W
+};
 
 #endif  //TYPES_H

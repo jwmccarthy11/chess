@@ -39,6 +39,13 @@ namespace bitboard {
     constexpr Bitboard fileFG = fileF | fileG;
     constexpr Bitboard fileGH = fileG | fileH;
 
+    // long diagonal bit masks
+    constexpr Bitboard diagNE = 0x8040201008040201;
+    constexpr Bitboard diagNW = 0x0102040810204080;
+
+    // board edge bit mask
+    constexpr Bitboard edge = fileA | fileH | rank1 | rank8;
+
     // get bit value of square on given bitboard
     constexpr Bitboard getBit(Bitboard bitboard, Square square) {
         return bitboard & 1ULL << square;
@@ -47,6 +54,11 @@ namespace bitboard {
     // set bit value of square on given bitboard
     constexpr Bitboard setBit(Bitboard bitboard, Square square) {
         return bitboard | 1ULL << square;
+    }
+
+    // shift bitboard according to sign of shift
+    constexpr Bitboard signShift(Bitboard bitboard, int shift) {
+        return shift > 0 ? bitboard << shift : bitboard >> -shift;
     }
 
     // get bitboard with given square = 1
@@ -59,7 +71,7 @@ namespace bitboard {
         return getBit(bitboard, square) ? bitboard ^ 1ULL << square : bitboard;
     }
 
-    // check for erroneous attack square
+    // check for erroneous square
     constexpr bool validSquare(Square square) {
         return square >= A1 && square <= H8;
     }

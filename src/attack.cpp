@@ -1,5 +1,6 @@
 // attack.cpp
 
+#include <iostream>
 #include "attack.h"
 
 Bitboard attack::pawn_attacks[NumColor][NumSquare];
@@ -18,15 +19,29 @@ void attack::init() {
         for (int shift : king_shift) {
             king_attacks[square] |= attackShift(square, shift);
         }
+
+
     }
 }
 
 Bitboard attack::maskPawnAttacks(Square square, Color color) {
     Bitboard attacks = 0ULL;
 
-    for (int shift : (color ? b_pawn_shift : w_pawn_shift)) {
+    for ( int shift : (color ? black_pawn_shift : white_pawn_shift) ) {
         attacks |= attackShift(square, shift);
     }
 
     return attacks;
+}
+
+Bitboard attack::maskBishopAttacks(Square square) {
+    int rank = square >> 3;
+    int file = square &  7;
+    int shift_ne = 8 * (rank - file);
+    int shift_nw = 8 * (rank + file - 7);
+
+    return signShift(diagNE, shift_ne)
+        |  signShift(diagNW, shift_nw)
+        ^  squareBit(square)
+        &  ~edge;
 }
