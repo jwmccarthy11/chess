@@ -11,8 +11,6 @@ using namespace bitboard;
 
 namespace attack {
 
-    constexpr int white_pawn_shift[] = { NE, NW };
-    constexpr int black_pawn_shift[] = { SE, SW };
     constexpr int knight_shift[] = { NNE, NNW, ENE, WNW, SSE, SSW, ESE, WSW };
     constexpr int king_shift[]   = { N, S, E, W, NE, NW, SE, SW };
 
@@ -24,18 +22,19 @@ namespace attack {
     // set bit at valid attack location
     constexpr Bitboard attackShift(Square square, int shift) {
         auto target = (Square) (square + shift);
-        return validSquare(target) && validFile(square, target) ? squareToBitboard(target) : 0ULL;
+        return validSquare(target) && validFile(square, target) ? squareToBB(target) : 0ULL;
     }
 
-    extern Bitboard pawn_attacks[NumColor][NumSquare];
-    extern Bitboard knight_attacks[NumSquare];
-    extern Bitboard king_attacks[NumSquare];
+    extern Bitboard pawn_masks[NumColor][NumSquare];
+    extern Bitboard knight_masks[NumSquare];
+    extern Bitboard king_masks[NumSquare];
 
-    Bitboard maskPawnAttacks(Square square, Color color);
-    Bitboard maskBishopAttacks(Square square);
+    Bitboard genPawnMasks(Square square, Color color);
+    Bitboard genBishopMasks(Square square);
+    Bitboard genRookMasks(Square square);
 
     void init();
-    
+
 }
 
 #endif  // ATTACK_H

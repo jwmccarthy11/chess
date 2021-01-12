@@ -27,6 +27,14 @@ enum Square {
     NumSquare
 };
 
+enum Rank {
+    Rank1, Rank2, Rank3, Rank4, Rank5, Rank6, Rank7, Rank8
+};
+
+enum File {
+    FileA, FileB, FileC, FileD, FileE, FileF, FileG, FileH
+};
+
 // Square pre-increment
 inline Square& operator++(Square& s) {
     return s = Square( int(s) + 1 );

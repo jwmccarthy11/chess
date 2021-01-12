@@ -46,6 +46,21 @@ namespace bitboard {
     // board edge bit mask
     constexpr Bitboard edge = fileA | fileH | rank1 | rank8;
 
+    // check for erroneous square
+    constexpr bool validSquare(Square square) {
+        return square >= A1 && square <= H8;
+    }
+
+    // get rank of given square
+    constexpr int getRank(Square square) {
+        return square >> 3;
+    }
+
+    // get file of given square
+    constexpr int getFile(Square square) {
+        return square & 7;
+    }
+
     // get bit value of square on given bitboard
     constexpr Bitboard getBit(Bitboard bitboard, Square square) {
         return bitboard & 1ULL << square;
@@ -56,24 +71,19 @@ namespace bitboard {
         return bitboard | 1ULL << square;
     }
 
+    // remove bit at given square from given bitboard
+    constexpr Bitboard popBit(Bitboard bitboard, Square square) {
+        return getBit(bitboard, square) ? bitboard ^ 1ULL << square : bitboard;
+    }
+
     // shift bitboard according to sign of shift
     constexpr Bitboard signedShift(Bitboard bitboard, int shift) {
         return shift > 0 ? bitboard << shift : bitboard >> -shift;
     }
 
     // get bitboard with given square = 1
-    constexpr Bitboard squareToBitboard(Square square) {
-        return 1ULL << square;
-    }
-
-    // set bit value of square to 0 on given bitboard
-    constexpr Bitboard popBit(Bitboard bitboard, Square square) {
-        return getBit(bitboard, square) ? bitboard ^ 1ULL << square : bitboard;
-    }
-
-    // check for erroneous square
-    constexpr bool validSquare(Square square) {
-        return square >= A1 && square <= H8;
+    constexpr Bitboard squareToBB(Square square) {
+        return setBit(0ULL, square);
     }
 
     void printBitboard(Bitboard);

@@ -11,8 +11,7 @@ int main() {
     attack::init();
 
     for (Square s = A1; s < NumSquare; ++s) {
-        std::cout << s << '\n';
-        printBitboard(attack::maskBishopAttacks(s));
+        printBitboard(attack::genRookMasks(s));
     }
 
     return 0;
